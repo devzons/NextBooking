@@ -2,10 +2,9 @@
 
 ## Overview
 
-| 1. Routing File System | 2. Rendering|3. Backend|4. Authentication|5. Booking and Availability|6. Testing
-|
-|---|---|---|---|---|---|
-|Pages<br>Loading<br>Layouts<br>Error handling<br>Not found|CSR vs SSR<br>Caching<br>Server Components<br>Client Components<br>|Postgres<br>Relations<br>Retrieving Data<br><br>|JWT<br>Conditional Rendering<br>Permissions<br>Middleware<br>|Algorithms<br><br><br><br><br>|Unit Tests<br>E2E Tests<br><br><br>|
+| 1. Routing File System                                     | 2. Rendering                                                        | 3. Backend                                       | 4. Authentication                                             | 5. Booking and Availability    | 6. Testing                          |
+| ---------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------------- | ------------------------------ | ----------------------------------- |
+| Pages<br>Loading<br>Layouts<br>Error handling<br>Not found | CSR vs SSR<br>Caching<br>Server Components<br>Client Components<br> | Postgres<br>Relations<br>Retrieving Data<br><br> | JWT<br>Conditional Rendering<br>Permissions<br>Middleware<br> | Algorithms<br><br><br><br><br> | Unit Tests<br>E2E Tests<br><br><br> |
 
 ### Pages
 
