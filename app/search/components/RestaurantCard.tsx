@@ -3,13 +3,13 @@ import { Cuisine, PRICE, Location } from '@prisma/client'
 import Price from '../../components/Price'
 
 interface Restaurant {
-  main_image: string
-  name: string
   id: number
-  slug: string
-  location: Location
-  cuisine: Cuisine
+  name: string
+  main_image: string
   price: PRICE
+  cuisine: Cuisine
+  location: Location
+  slug: string
 }
 
 export default function RestaurantCard({
@@ -18,7 +18,7 @@ export default function RestaurantCard({
   restaurant: Restaurant
 }) {
   return (
-    <div className='border-b flex pb-5 ml-4'>
+    <div className='border-b flex pb-5'>
       <Link href={`/restaurant/${restaurant.slug}`}>
         <img
           src={restaurant.main_image}
