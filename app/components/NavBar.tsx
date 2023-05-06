@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function NavBar() {
   return (
     <nav className='bg-white p-2 flex justify-between'>
-      <Link href='/' className='text-indigo-700 text-2xl'>
+      <Link href='/' className='text-indigo-800 text-2xl'>
         <span className='font-light'>
           Open<span className='font-bold'>Booking</span>
         </span>
