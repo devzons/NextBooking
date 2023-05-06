@@ -63,15 +63,20 @@ npx prisma init
 
 ### Tables
 
-| Restaurant                                                                                                               | Item                                                | Location   | Cuisine    |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ---------- | ---------- |
-| id<br>name<br>main_img<br>description<br>images<br>open_time<br>close_time<br>slug<br>price<br>location_id<br>cuisine_id | id<br>name<br>price<br>description<br>restaurant_id | id<br>name | id<br>name |
+- Define schema in prisma/schema.prisma
 
 ### SQL
 
-- After creating database tables, we push the db to prisma
+- After creating database tables in schema.prisma, we push the db to prisma
 
 ```bash
 npx prisma db push
 
 ```
+
+### upload data to supabase problem
+
+- You will need pages/api/hello.ts, if not, create folders and file.
+- inside the api folder, copy paste seed.ts file
+- `http://localhost:3000/api/seed` is not working (404 error)
+- `http://localhost:3000/api/hello` copy all file to hello.ts will work.
