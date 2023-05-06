@@ -1,45 +1,11 @@
-# Restaurant Booking App withe Nextjs
+# Restaurant Booking App with Nextjs
 
 ## Overview
 
-1. Routing File System
-
-- Pages
-- Loading
-- Layouts
-- Error handling
-- Not found
-
-2. Rendering
-
-- CSR vs SSR
-- Caching
-- Server Components
-- Client Components
-
-3. Backend
-
-- Postgres
-- Relations
-- Retrieving Data
-
-4. Authentication
-
-- JWT
-- Conditional Rendering
-- Permissions
-- Middleware
-
-5. Booking and Availability
-
-- Algorithms
-
-6. Testing
-
-- Unit Tests
-- E2E Tests
-
-## Setup
+| 1. Routing File System | 2. Rendering|3. Backend|4. Authentication|5. Booking and Availability|6. Testing
+|
+|---|---|---|---|---|---|
+|Pages<br>Loading<br>Layouts<br>Error handling<br>Not found|CSR vs SSR<br>Caching<br>Server Components<br>Client Components<br>|Postgres<br>Relations<br>Retrieving Data<br><br>|JWT<br>Conditional Rendering<br>Permissions<br>Middleware<br>|Algorithms<br><br><br><br><br>|Unit Tests<br>E2E Tests<br><br><br>|
 
 ### Pages
 
