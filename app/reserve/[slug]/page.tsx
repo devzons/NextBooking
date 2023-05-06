@@ -3,7 +3,7 @@ import Header from './components/Header'
 import Form from './components/Form'
 
 export const metadata: Metadata = {
-  title: 'reserve',
+  title: 'reserve at restaurant',
   description: 'Menu page',
 }
 

@@ -48,3 +48,15 @@
 - RestaurantDetailsPage '/restaurant/shakeshack
 - RestaurantMenuPage '/restaurant/shakeshack/menu'
 - ReservationPage '/reserve/shakeshack'
+
+## Postresql
+
+[https://supabase.com/](https://supabase.com/)
+
+### install Prisma
+
+```bash
+npm install prisma@<verson>
+
+npx prisma init
+```
