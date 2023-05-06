@@ -1,37 +1,19 @@
 import React from 'react'
 
-export default function Images() {
+export default function Images({ images }: { images: Array<string> }) {
   return (
     <div>
       <h2 className='font-semibold text-3xl mt-10 mb-7 border-b pb-5'>
-        5 photos
+        {images.length} photo{images.length > 1 ? 's' : ''}
       </h2>
       <div className='flex flex-wrap'>
-        <img
-          className='w-56 h-44 mr-1 mb-1'
-          src='https://resizer.otstatic.com/v2/photos/xlarge/3/41701449.jpg'
-          alt=''
-        />
-        <img
-          className='w-56 h-44 mr-1 mb-1'
-          src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701450.jpg'
-          alt=''
-        />
-        <img
-          className='w-56 h-44 mr-1 mb-1'
-          src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701452.jpg'
-          alt=''
-        />
-        <img
-          className='w-56 h-44 mr-1 mb-1'
-          src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701453.jpg'
-          alt=''
-        />
-        <img
-          className='w-56 h-44 mr-1 mb-1'
-          src='https://resizer.otstatic.com/v2/photos/xlarge/2/41701454.jpg'
-          alt=''
-        />
+        {images.map((image, index) => (
+          <img
+            className='w-50 h-44 mr-1 mb-1'
+            src={image}
+            alt={`image-${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   )

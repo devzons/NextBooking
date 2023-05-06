@@ -51,3 +51,17 @@ npx prisma db push
 - inside the api folder, copy paste seed.ts file
 - `http://localhost:3000/api/seed` is not working (404 error)
 - `http://localhost:3000/api/hello` copy all file to hello.ts will work.
+
+### Common Error Handling
+
+```bash
+Unhandled Runtime Error
+Error:
+Invalid `prisma.restaurant.findManu()` invocation:
+...
+ConnectorError(...)
+```
+
+#### Solution
+
+- Restart server: Project Settings -> Restart server
