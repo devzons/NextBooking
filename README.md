@@ -60,3 +60,18 @@ npm install prisma@<verson>
 
 npx prisma init
 ```
+
+### Tables
+
+| Restaurant                                                                                                               | Item                                                | Location   | Cuisine    |
+| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ---------- | ---------- |
+| id<br>name<br>main_img<br>description<br>images<br>open_time<br>close_time<br>slug<br>price<br>location_id<br>cuisine_id | id<br>name<br>price<br>description<br>restaurant_id | id<br>name | id<br>name |
+
+### SQL
+
+- After creating database tables, we push the db to prisma
+
+```bash
+npx prisma db push
+
+```
