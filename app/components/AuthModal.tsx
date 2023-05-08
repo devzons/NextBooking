@@ -18,11 +18,26 @@ const style = {
 
 export default function AuthModal({ isSignin }: { isSignin: boolean }) {
   const [open, setOpen] = useState(false)
+  const [inputs, setInputs] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    city: '',
+    password: '',
+  })
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
   const renderContent = (signInContent: string, signUpContent: string) => {
     return isSignin ? signInContent : signUpContent
+  }
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    })
   }
 
   return (
@@ -56,7 +71,11 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
                   'Create Your OpenBooking Account'
                 )}
               </h2>
-              <AuthModalInputs />
+              <AuthModalInputs
+                inputs={inputs}
+                handleChangeInput={handleChangeInput}
+                isSignin={isSignin}
+              />
               <button className='uppercase bg-purple-700 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'>
                 {renderContent('Sign In', 'Create Account')}
               </button>
