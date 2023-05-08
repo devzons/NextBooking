@@ -74,3 +74,14 @@ ConnectorError(...)
 
 - When click sign in or sign up button, open modal to input users credentials
 - need dependencies: @emotion/react, @emotion/styled
+
+### Make an HTTP request to an auth endpoint
+
+Endpoint: `/api/auth/signup`
+
+1. Validate the user input
+2. Validate user doesn't already exist
+3. Hash the password
+4. Save user in DB
+5. Create a JWT token
+6. Send JWT to client
