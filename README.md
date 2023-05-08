@@ -52,7 +52,9 @@ npx prisma db push
 - `http://localhost:3000/api/seed` is not working (404 error)
 - `http://localhost:3000/api/hello` copy all file to hello.ts will work.
 
-### Common Error Handling
+### Common Error Handling with this project
+
+#### Supabase side error
 
 ```bash
 Unhandled Runtime Error
@@ -65,3 +67,10 @@ ConnectorError(...)
 #### Solution
 
 - Restart server: Project Settings -> Restart server
+
+### Authentication
+
+[https://mui.com/material-ui/react-modal/](https://mui.com/material-ui/react-modal/)
+
+- When click sign in or sign up button, open modal to input users credentials
+- need dependencies: @emotion/react, @emotion/styled
