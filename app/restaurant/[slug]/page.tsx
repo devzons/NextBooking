@@ -9,6 +9,7 @@ import {
   Reviews,
   ReservationCard,
 } from './components'
+import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Restaurant',
@@ -44,7 +45,7 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   })
 
   if (!restaurant) {
-    throw new Error('Restaurant not found')
+    notFound()
   }
 
   return restaurant
