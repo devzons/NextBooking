@@ -85,9 +85,18 @@ Endpoint: `/api/auth/signup`
 
 [https://jwt.io/](https://jwt.io/)
 
+### Sign up
+
 1. Validate the user input - validator [https://www.npmjs.com/package/validator](https://www.npmjs.com/package/validator)
-2. Validate user doesn't already exist
+2. Validate user already exist
 3. Hash the password
 4. Save user in DB
 5. Create a JWT token
 6. Send JWT to client
+
+### Sign in
+
+1. Validate the user input
+2. Validate user already exist
+3. Compare hashed password
+4. Create JWT and send it to the user

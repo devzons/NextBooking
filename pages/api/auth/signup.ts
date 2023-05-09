@@ -82,7 +82,9 @@ export default async function handler(
       .sign(secret)
 
     res.status(200).json({
-      hello: token,
+      token,
     })
   }
+
+  return res.status(404).json('Unknown endpoint')
 }
