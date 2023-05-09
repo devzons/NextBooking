@@ -80,7 +80,10 @@ ConnectorError(...)
 Endpoint: `/api/auth/signup`
 
 `npm install @types/validator`
-`npm install bcrypt`
+`npm install @types/bcrypt`
+`npm install jose
+
+[https://jwt.io/](https://jwt.io/)
 
 1. Validate the user input - validator [https://www.npmjs.com/package/validator](https://www.npmjs.com/package/validator)
 2. Validate user doesn't already exist
