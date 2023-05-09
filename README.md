@@ -79,7 +79,9 @@ ConnectorError(...)
 
 Endpoint: `/api/auth/signup`
 
-1. Validate the user input
+`npm install @types/validator`
+
+1. Validate the user input - validator [https://www.npmjs.com/package/validator](https://www.npmjs.com/package/validator)
 2. Validate user doesn't already exist
 3. Hash the password
 4. Save user in DB
