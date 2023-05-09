@@ -114,3 +114,10 @@ Use `npm install jsonwebtoken` instead of jose, but might have some issues with 
 3. Decode the token
 4. Fetch user from DB
 5. Send user to client
+
+### Middleware
+
+- Making all HTTP endpoints secure like above is not ideal, best practice
+- We use a middleware from Next.js
+- It works between token and any endpoints
+- create `middleware.ts` file in your project root directory
