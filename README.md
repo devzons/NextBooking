@@ -96,7 +96,21 @@ Endpoint: `/api/auth/signup`
 
 ### Sign in
 
+Endpoint: `/api/auth/signin`
+
 1. Validate the user input
 2. Validate user already exist
 3. Compare hashed password
 4. Create JWT and send it to the user
+
+### Make an HTTP request to an auth endpoint with token in header
+
+Endpoint: `/api/auth/me`
+
+Use `npm install jsonwebtoken` instead of jose, but might have some issues with server response
+
+1. Extract token from header
+2. Verify token
+3. Decode the token
+4. Fetch user from DB
+5. Send user to client
