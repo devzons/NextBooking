@@ -80,6 +80,7 @@ ConnectorError(...)
 Endpoint: `/api/auth/signup`
 
 `npm install @types/validator`
+`npm install bcrypt`
 
 1. Validate the user input - validator [https://www.npmjs.com/package/validator](https://www.npmjs.com/package/validator)
 2. Validate user doesn't already exist
