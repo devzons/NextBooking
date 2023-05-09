@@ -4,6 +4,8 @@ import { useState, useEffect, useContext } from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import AuthModalInputs from './AuthModalInputs'
+import { AuthenticationContext } from '../context/AuthContext'
+import useAuth from '@/hooks/useAuth'
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -17,17 +19,11 @@ const style = {
 }
 
 export default function AuthModal({ isSignin }: { isSignin: boolean }) {
+  const { loading, data, error } = useContext(AuthenticationContext)
   const [open, setOpen] = useState(false)
-  const [inputs, setInputs] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    city: '',
-    password: '',
-  })
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const { signin } = useAuth()
 
   const renderContent = (signInContent: string, signUpContent: string) => {
     return isSignin ? signInContent : signUpContent
@@ -38,6 +34,43 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
       ...inputs,
       [e.target.name]: e.target.value,
     })
+  }
+
+  const [inputs, setInputs] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    city: '',
+    password: '',
+  })
+
+  const [disabled, setDisabled] = useState(true)
+
+  useEffect(() => {
+    if (isSignin) {
+      if (inputs.password && inputs.email) {
+        return setDisabled(false)
+      }
+    } else {
+      if (
+        inputs.firstName &&
+        inputs.lastName &&
+        inputs.email &&
+        inputs.phone &&
+        inputs.city &&
+        inputs.password
+      ) {
+        return setDisabled(false)
+      }
+    }
+    setDisabled(true)
+  }, [inputs])
+
+  const handleClick = () => {
+    if (isSignin) {
+      signin({ email: inputs.email, password: inputs.password })
+    }
   }
 
   return (
@@ -61,14 +94,14 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
           <div className='p-2'>
             <div className='uppercase font-bold text-center pb-2 border-b mb-2'>
               <p className='text-sm'>
-                {renderContent('Sign In', 'Create An Account')}
+                {renderContent('Sign In', 'Create Account')}
               </p>
             </div>
             <div className='m-auto'>
               <h2 className='text-2xl font-light text-center'>
                 {renderContent(
                   'Log Into Your Account',
-                  'Create Your OpenBooking Account'
+                  'Create Your OpenTable Account'
                 )}
               </h2>
               <AuthModalInputs
@@ -76,7 +109,11 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
                 handleChangeInput={handleChangeInput}
                 isSignin={isSignin}
               />
-              <button className='uppercase bg-purple-700 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'>
+              <button
+                className='uppercase bg-purple-700 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'
+                disabled={disabled}
+                onClick={handleClick}
+              >
                 {renderContent('Sign In', 'Create Account')}
               </button>
             </div>

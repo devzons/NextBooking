@@ -68,14 +68,16 @@ ConnectorError(...)
 
 - Restart server: Project Settings -> Restart server
 
-### Authentication
+## Authentication
+
+### Server side Authentication
 
 [https://mui.com/material-ui/react-modal/](https://mui.com/material-ui/react-modal/)
 
 - When click sign in or sign up button, open modal to input users credentials
 - need dependencies: @emotion/react, @emotion/styled
 
-### Make an HTTP request to an auth endpoint
+#### Make an HTTP request to an auth endpoint
 
 Endpoint: `/api/auth/signup`
 
@@ -85,7 +87,7 @@ Endpoint: `/api/auth/signup`
 
 [https://jwt.io/](https://jwt.io/)
 
-### Sign up
+#### Sign up
 
 1. Validate the user input - validator [https://www.npmjs.com/package/validator](https://www.npmjs.com/package/validator)
 2. Validate user already exist
@@ -94,7 +96,7 @@ Endpoint: `/api/auth/signup`
 5. Create a JWT token
 6. Send JWT to client
 
-### Sign in
+#### Sign in
 
 Endpoint: `/api/auth/signin`
 
@@ -103,7 +105,7 @@ Endpoint: `/api/auth/signin`
 3. Compare hashed password
 4. Create JWT and send it to the user
 
-### Make an HTTP request to an auth endpoint with token in header
+#### Make an HTTP request to an auth endpoint with token in header
 
 Endpoint: `/api/auth/me`
 
@@ -115,9 +117,21 @@ Use `npm install jsonwebtoken` instead of jose, but might have some issues with 
 4. Fetch user from DB
 5. Send user to client
 
-### Middleware
+#### Middleware
 
 - Making all HTTP endpoints secure like above is not ideal, best practice
 - We use a middleware from Next.js
 - It works between token and any endpoints
 - create `middleware.ts` file in your project root directory
+
+### Client side Authentication
+
+`npm install axios`
+
+#### Global Context
+
+|         |               | unauthenticated | press<br>signin button | user<br>response back | error<br>response |
+| ------- | ------------- | --------------- | ---------------------- | --------------------- | ----------------- |
+| loading | boolean       | false           | true                   | false                 | false             |
+| data    | User / null   | null            | null                   | `{email: ''...}`      | null              |
+| error   | string / null | null            | null                   | null                  | Error messages    |

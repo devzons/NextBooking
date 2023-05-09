@@ -1,3 +1,5 @@
+import React from 'react'
+
 interface Props {
   inputs: {
     firstName: string
@@ -38,7 +40,6 @@ export default function AuthModalInputs({
           />
         </div>
       )}
-
       <div className='my-3 flex justify-between text-sm'>
         <input
           type='text'
