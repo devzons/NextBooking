@@ -3,6 +3,7 @@ import validator from 'validator'
 import { PrismaClient } from '@prisma/client'
 import bcrypt from 'bcrypt'
 import * as jose from 'jose'
+import { setCookie } from 'cookies-next'
 
 const prisma = new PrismaClient()
 
@@ -16,12 +17,18 @@ export default async function handler(
 
     const validationSchema = [
       {
-        valid: validator.isLength(firstName, { min: 1, max: 20 }),
-        errorMessage: 'Fist name is invalid',
+        valid: validator.isLength(firstName, {
+          min: 1,
+          max: 20,
+        }),
+        errorMessage: 'First name is invalid',
       },
       {
-        valid: validator.isLength(lastName, { min: 1, max: 20 }),
-        errorMessage: 'Last name is invalid',
+        valid: validator.isLength(lastName, {
+          min: 1,
+          max: 20,
+        }),
+        errorMessage: 'First name is invalid',
       },
       {
         valid: validator.isEmail(email),
@@ -52,13 +59,15 @@ export default async function handler(
     }
 
     const userWithEmail = await prisma.user.findUnique({
-      where: { email },
+      where: {
+        email,
+      },
     })
 
     if (userWithEmail) {
       return res
         .status(400)
-        .json({ errorMessage: 'User with this email already exists' })
+        .json({ errorMessage: 'Email is associated with another account' })
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -68,21 +77,29 @@ export default async function handler(
         first_name: firstName,
         last_name: lastName,
         password: hashedPassword,
-        email,
-        phone,
         city,
+        phone,
+        email,
       },
     })
 
     const alg = 'HS256'
+
     const secret = new TextEncoder().encode(process.env.JWT_SECRET)
+
     const token = await new jose.SignJWT({ email: user.email })
       .setProtectedHeader({ alg })
       .setExpirationTime('24h')
       .sign(secret)
 
-    res.status(200).json({
-      token,
+    setCookie('jwt', token, { req, res, maxAge: 60 * 6 * 24 })
+
+    return res.status(200).json({
+      firstName: user.first_name,
+      lastName: user.last_name,
+      email: user.email,
+      phone: user.phone,
+      city: user.city,
     })
   }
 

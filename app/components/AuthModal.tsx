@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import AuthModalInputs from './AuthModalInputs'
+import useAuth from '../../hooks/useAuth'
 import { AuthenticationContext } from '../context/AuthContext'
-import useAuth from '@/hooks/useAuth'
 import { Alert, CircularProgress } from '@mui/material'
 
 const style = {
@@ -13,21 +13,22 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
+  width: 400,
   bgcolor: 'background.paper',
+
   boxShadow: 24,
   p: 4,
 }
 
 export default function AuthModal({ isSignin }: { isSignin: boolean }) {
-  const { loading, data, error } = useContext(AuthenticationContext)
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-  const { signin } = useAuth()
+  const { signin, signup } = useAuth()
+  const { loading, data, error } = useContext(AuthenticationContext)
 
-  const renderContent = (signInContent: string, signUpContent: string) => {
-    return isSignin ? signInContent : signUpContent
+  const renderContent = (signinContent: string, signupContent: string) => {
+    return isSignin ? signinContent : signupContent
   }
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,30 +59,33 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
         inputs.firstName &&
         inputs.lastName &&
         inputs.email &&
-        inputs.phone &&
+        inputs.password &&
         inputs.city &&
-        inputs.password
+        inputs.phone
       ) {
         return setDisabled(false)
       }
     }
+
     setDisabled(true)
   }, [inputs])
 
   const handleClick = () => {
     if (isSignin) {
       signin({ email: inputs.email, password: inputs.password }, handleClose)
+    } else {
+      signup(inputs, handleClose)
     }
   }
 
   return (
     <div>
       <button
-        onClick={handleOpen}
         className={`${renderContent(
-          'bg-indigo-600 hover:bg-indigo-500 text-white',
-          ' border-indigo-100 p-1 px-4 rounded hover:bg-indigo-100'
+          'bg-blue-400 text-white',
+          ''
         )} border p-1 px-4 rounded mr-3`}
+        onClick={handleOpen}
       >
         {renderContent('Sign in', 'Sign up')}
       </button>
@@ -121,7 +125,7 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
                   isSignin={isSignin}
                 />
                 <button
-                  className='uppercase bg-purple-700 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'
+                  className='uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400'
                   disabled={disabled}
                   onClick={handleClick}
                 >
