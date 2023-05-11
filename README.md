@@ -157,9 +157,23 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 #### API Endpoint
 
-`/restaurant/[slug]/availability?partySize=4&day=2023-04-21&time=22:30:00.000z`
+`/restaurant/[slug]/availability?partySize=4&day=2023-04-21&time=22:30:00.000Z`
 
-1. Find all search times
+1. Find all search times - search all 1 hour before and after the specified by 30 minutes
+
+- example:
+
+```javascript
+;[
+  '02:00:00.000Z',
+  '02:30:00.000Z',
+  '03:00:00.000Z',
+  '03:30:00.000Z',
+  '03:00:00.000Z',
+]
+```
+
+- times.ts: time, searchTimes
 
 2. Fetch the Bookings
 
@@ -167,7 +181,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 [
   {
     number_of_people: 3,
-    booking_time: "2023-05-22T030:00:00:000z"
+    booking_time: "2023-05-22T030:00:00.000Z"
     tables: [{table_id: 1}]
   }
   ...
@@ -182,6 +196,19 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 6. Filter out the booked tables
 
-7. Determine the availability
+7. Determine if a timeslot is available based on the tables and party size
+
+```javascript
+[
+  {
+    time: "02:30:00.000Z"
+    available: true
+  },
+  {
+    time: "03:00:00.000Z"
+    available: false
+  }
+]
+```
 
 8. Filter by restaurant time window
