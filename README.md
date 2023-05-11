@@ -135,3 +135,53 @@ Use `npm install jsonwebtoken` instead of jose, but might have some issues with 
 | loading | boolean       | false           | true                   | false                 | false             |
 | data    | User / null   | null            | null                   | `{email: ''...}`      | null              |
 | error   | string / null | null            | null                   | null                  | Error messages    |
+
+---
+
+## Build an Availability system
+
+1. Availability is based on tables
+
+2. Tables can only have 2 or 4 seats
+
+### Dependencies
+
+`npm install react-datepicker @types/react-datepicker`
+
+- when styling issue:
+
+```bash
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+```
+
+#### API Endpoint
+
+`/restaurant/[slug]/availability?partySize=4&day=2023-04-21&time=22:30:00.000z`
+
+1. Find all search times
+
+2. Fetch the Bookings
+
+```javascript
+[
+  {
+    number_of_people: 3,
+    booking_time: "2023-05-22T030:00:00:000z"
+    tables: [{table_id: 1}]
+  }
+  ...
+]
+```
+
+3. Compress the booking - compress into an object where the datetime is the key and an object of th table ids is the value
+
+4. Fetch the restaurant tables
+
+5. Reformat the search times to include the date, time, and tables
+
+6. Filter out the booked tables
+
+7. Determine the availability
+
+8. Filter by restaurant time window

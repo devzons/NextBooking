@@ -1,20 +1,12 @@
 import { PrismaClient, Review } from '@prisma/client'
-import type { Metadata } from 'next'
-import {
-  RestaurantNavBar,
-  Rating,
-  Description,
-  Title,
-  Images,
-  Reviews,
-  ReservationCard,
-} from './components'
 import { notFound } from 'next/navigation'
-
-export const metadata: Metadata = {
-  title: 'Restaurant',
-  description: 'Restaurant description',
-}
+import Description from './components/Description'
+import Images from './components/Images'
+import Rating from './components/Rating'
+import ReservationCard from './components/ReservationCard'
+import RestaurantNavBar from './components/RestaurantNavBar'
+import Reviews from './components/Reviews'
+import Title from './components/Title'
 
 const prisma = new PrismaClient()
 
@@ -23,6 +15,8 @@ interface Restaurant {
   name: string
   images: string[]
   description: string
+  open_time: string
+  close_time: string
   slug: string
   reviews: Review[]
 }
@@ -68,9 +62,12 @@ export default async function RestaurantDetails({
         <Images images={restaurant.images} />
         <Reviews reviews={restaurant.reviews} />
       </div>
-
       <div className='w-[27%] relative text-reg'>
-        <ReservationCard />
+        <ReservationCard
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+          slug={restaurant.slug}
+        />
       </div>
     </>
   )
