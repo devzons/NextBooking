@@ -159,17 +159,20 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 `/restaurant/[slug]/availability?partySize=4&day=2023-04-21&time=22:30:00.000Z`
 
+- Test
+  [http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?day=2023-06-03&time=20:00:00.000Z&partySize=8](http://localhost:3000/api/restaurant/vivaan-fine-indian-cuisine-ottawa/availability?day=2023-06-03&time=20:00:00.000Z&partySize=8)
+
 1. Find all search times - search all 1 hour before and after the specified by 30 minutes
 
 - example:
 
-```javascript
-;[
-  '02:00:00.000Z',
-  '02:30:00.000Z',
-  '03:00:00.000Z',
-  '03:30:00.000Z',
-  '03:00:00.000Z',
+```json
+[
+  "02:00:00.000Z",
+  "02:30:00.000Z",
+  "03:00:00.000Z",
+  "03:30:00.000Z",
+  "03:00:00.000Z"
 ]
 ```
 
@@ -177,18 +180,40 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 2. Fetch the Bookings
 
-```javascript
+- expected results:
+
+```json
 [
   {
-    number_of_people: 3,
-    booking_time: "2023-05-22T030:00:00.000Z"
-    tables: [{table_id: 1}]
+    "number_of_people": 3,
+    "booking_time": "2023-05-22T03:00:00.000Z",
+    "tables": [{ "table_id": 1 }]
+  },
+  {
+    "number_of_people": 8,
+    "booking_time": "2023-05-22T03:30:00.000Z",
+    "tables": [{ "table_id": 1, "table_id": 2 }]
   }
-  ...
 ]
 ```
 
 3. Compress the booking - compress into an object where the datetime is the key and an object of th table ids is the value
+
+- expected results:
+
+```json
+[
+  {
+    "2023-05-22T03:00:00.000Z": {
+      "1": true
+    },
+    "2023-05-22T03:30:00.000Z": {
+      "1": true,
+      "2": true
+    }
+  }
+]
+```
 
 4. Fetch the restaurant tables
 
