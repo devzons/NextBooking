@@ -236,4 +236,28 @@ import 'react-datepicker/dist/react-datepicker.css'
 ]
 ```
 
-8. Filter by restaurant time window
+8. Filter out times that are oustside fo opening window
+
+---
+
+## Building the Scheduling System
+
+`/restaurant/[slug]/reserve?partySize=4&day=2023-05-31&time=22:30:00.000Z`
+
+1. Validation
+
+2. Extracting the Table Availability logic into its own function
+
+3. Count the table based on seats
+
+4. Determine the tables to book
+
+5. Creating the booking and linking it to the tables
+
+### date format
+
+[https://date-fns.org/v2.29.3/docs/format](https://date-fns.org/v2.29.3/docs/format)
+
+```bash
+npm install date-fns
+```

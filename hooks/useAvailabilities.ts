@@ -32,7 +32,7 @@ export default function useAvailabilities() {
           },
         }
       )
-      console.log(response)
+
       setLoading(false)
       setData(response.data)
     } catch (error: any) {
