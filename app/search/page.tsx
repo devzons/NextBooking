@@ -1,15 +1,14 @@
 import type { Metadata } from 'next'
-import { PrismaClient, PRICE } from '@prisma/client'
+import { PRICE } from '@prisma/client'
 import Header from './components/Header'
 import SearchSideBar from './components/SearchSideBar'
 import RestaurantCard from './components/RestaurantCard'
+import prisma from '@/lib/prismadb'
 
 export const metadata: Metadata = {
   title: 'search | OpenBooking',
   description: 'Search Results',
 }
-
-const prisma = new PrismaClient()
 
 interface SearchParams {
   city?: string

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { PrismaClient } from '@prisma/client'
 import { RestaurantNavBar, Menu } from '../components'
-
-const prisma = new PrismaClient()
+import prisma from '@/lib/prismadb'
 
 const fetchRestaurantMenu = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({

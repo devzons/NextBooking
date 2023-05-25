@@ -1,4 +1,4 @@
-import { PrismaClient, Review } from '@prisma/client'
+import { Review } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import Description from './components/Description'
 import Images from './components/Images'
@@ -7,8 +7,7 @@ import ReservationCard from './components/ReservationCard'
 import RestaurantNavBar from './components/RestaurantNavBar'
 import Reviews from './components/Reviews'
 import Title from './components/Title'
-
-const prisma = new PrismaClient()
+import prisma from '@/lib/prismadb'
 
 interface Restaurant {
   id: number

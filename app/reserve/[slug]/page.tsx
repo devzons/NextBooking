@@ -2,8 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { notFound } from 'next/navigation'
 import Form from './components/Form'
 import Header from './components/Header'
-
-const prisma = new PrismaClient()
+import prisma from '@/lib/prismadb'
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = await prisma.restaurant.findUnique({
