@@ -44,29 +44,23 @@ const fetchRestaurantBySlug = async (slug: string): Promise<Restaurant> => {
   return restaurant
 }
 
-export default async function RestaurantDetails({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function RestaurantDetails({ params }: { params: { slug: string } }) {
   const restaurant = await fetchRestaurantBySlug(params.slug)
 
   return (
     <>
-      <div className='bg-white w-[70%] rounded p-3 shadow'>
-        <RestaurantNavBar slug={restaurant.slug} />
-        <Title name={restaurant.name} />
-        <Rating reviews={restaurant.reviews} />
-        <Description description={restaurant.description} />
-        <Images images={restaurant.images} />
-        <Reviews reviews={restaurant.reviews} />
-      </div>
-      <div className='w-[27%] relative text-reg'>
-        <ReservationCard
-          openTime={restaurant.open_time}
-          closeTime={restaurant.close_time}
-          slug={restaurant.slug}
-        />
+      <div className='flex flex-col md:flex-row m-auto justify-start md:justify-between items-start mt-0 md:-mt-11'>
+        <div className='bg-white w-full md:w-[70%] rounded p-3 shadow'>
+          <RestaurantNavBar slug={restaurant.slug} />
+          <Title name={restaurant.name} />
+          <Rating reviews={restaurant.reviews} />
+          <Description description={restaurant.description} />
+          <Images images={restaurant.images} />
+          <Reviews reviews={restaurant.reviews} />
+        </div>
+        <div className='w-full md:w-[27%] relative text-reg'>
+          <ReservationCard openTime={restaurant.open_time} closeTime={restaurant.close_time} slug={restaurant.slug} />
+        </div>
       </div>
     </>
   )

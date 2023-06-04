@@ -9,14 +9,10 @@ interface Props {
 
 export default function RestaurantCard({ restaurant }: Props) {
   return (
-    <div className='w-52 h-72 m-2 rounded overflow-hidden border cursor-pointer'>
+    <div className='w-full md:w-[19%] h-auto m-2 md:m-1 rounded md:overflow-hidden border cursor-pointer'>
       <Link href={`/restaurant/${restaurant.slug}`}>
-        <img
-          src={restaurant.main_image}
-          alt={restaurant.name}
-          className='w-full h-36'
-        />
-        <div className='p-1'>
+        <img src={restaurant.main_image} alt={restaurant.name} className='w-full h-40' />
+        <div className='p-2'>
           <h3 className='font-semibold text-xl mb-2'>{restaurant.name}</h3>
           <div className='flex justify-start items-center'>
             <Stars reviews={restaurant.reviews} />

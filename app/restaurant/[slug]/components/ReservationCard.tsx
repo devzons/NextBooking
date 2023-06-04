@@ -5,20 +5,9 @@ import { useState } from 'react'
 import useAvailabilities from '../../../../hooks/useAvailabilities'
 import { CircularProgress } from '@mui/material'
 import Link from 'next/link'
-import {
-  convertToDisplayTime,
-  Time,
-} from '../../../../utils/convertToDisplayTime'
+import { convertToDisplayTime, Time } from '../../../../utils/convertToDisplayTime'
 
-export default function ReservationCard({
-  openTime,
-  closeTime,
-  slug,
-}: {
-  openTime: string
-  closeTime: string
-  slug: string
-}) {
+export default function ReservationCard({ openTime, closeTime, slug }: { openTime: string; closeTime: string; slug: string }) {
   const { data, loading, error, fetchAvailabilities } = useAvailabilities()
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date())
   const [time, setTime] = useState(openTime)
@@ -63,20 +52,14 @@ export default function ReservationCard({
   }
 
   return (
-    <div className='fixed bg-white rounded p-3 shadow'>
+    <div className='block md:fixed bg-white rounded p-3 shadow'>
       <div className='text-center border-b pb-2 font-bold'>
         <h4 className='mx-3 text-lg'>Make a Reservation</h4>
       </div>
       {/* party size */}
       <div className='my-3 flex flex-col text-sm'>
         <label htmlFor=''>Party size</label>
-        <select
-          name=''
-          className='py-3 border-b font-light'
-          id=''
-          value={partySize}
-          onChange={(e) => setPartySize(e.target.value)}
-        >
+        <select name='' className='py-3 border-b font-light' id='' value={partySize} onChange={(e) => setPartySize(e.target.value)}>
           {partySizes.map((size) => (
             <option value={size.value}>{size.label}</option>
           ))}
@@ -87,23 +70,12 @@ export default function ReservationCard({
         {/* date */}
         <div className='flex flex-col w-[48%]'>
           <label htmlFor=''>Date</label>
-          <DatePicker
-            selected={selectedDate}
-            onChange={handleChangeDate}
-            className='py-3 borber-b font-light text-reg w-24'
-            dateFormat='MMMM d'
-          />
+          <DatePicker selected={selectedDate} onChange={handleChangeDate} className='py-3 borber-b font-light text-reg w-24' dateFormat='MMMM d' />
         </div>
         {/* time */}
         <div className='flex flex-col w-[48%]'>
           <label htmlFor=''>Time</label>
-          <select
-            name=''
-            id=''
-            className='py-3 border-b font-light'
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          >
+          <select name='' id='' className='py-3 border-b font-light' value={time} onChange={(e) => setTime(e.target.value)}>
             {filterTimeByRestaurantOpenWindow().map((time) => (
               <option value={time.time}>{time.displayTime}</option>
             ))}
@@ -111,11 +83,7 @@ export default function ReservationCard({
         </div>
       </div>
       <div className='mt-5'>
-        <button
-          className='bg-red-600 rounded w-full px-4 text-white font-bold h-16'
-          onClick={handleClick}
-          disabled={loading}
-        >
+        <button className='bg-red-600 rounded w-full px-4 text-white font-bold h-16' onClick={handleClick} disabled={loading}>
           {loading ? <CircularProgress color='inherit' /> : 'Find a Time'}
         </button>
       </div>
@@ -125,13 +93,8 @@ export default function ReservationCard({
           <div className='flex flex-wrap mt-2'>
             {data.map((time) => {
               return time.available ? (
-                <Link
-                  href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`}
-                  className='bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 rounded mr-3'
-                >
-                  <p className='text-sm font-bold'>
-                    {convertToDisplayTime(time.time as Time)}
-                  </p>
+                <Link href={`/reserve/${slug}?date=${day}T${time.time}&partySize=${partySize}`} className='bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 rounded mr-3'>
+                  <p className='text-sm font-bold'>{convertToDisplayTime(time.time as Time)}</p>
                 </Link>
               ) : (
                 <p className='bg-gray-300 p-2 w-24 mb-3 rounded mr-3'></p>
